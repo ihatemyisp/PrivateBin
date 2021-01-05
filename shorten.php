@@ -31,7 +31,9 @@
 
 	// [YOURLS Settings] 
 	// The URL for your YOURLS installation API.
+	// This is hasn't been tested in a folder vice subdomain use case; YMMV, but in theory, I think it should work
 	$yourlsUrl = "https://url.privatebin.info/yourls-api.php";
+	$yourlsBase = "https://url.privtebin.info/"; // too lazy to code in a regex for this
 	$yourlsSignature = "XXXXXXX";
 
 	// [Bitly Settings]
@@ -74,7 +76,7 @@
  				$data = curl_exec($ch);
  				curl_close($ch);
 
-   				if (!($data === FALSE) && is_string($data) && startsWith ($data, "https://url.vogon.dev/"))
+   				if (!($data === FALSE) && is_string($data) && startsWith ($data, $yourlsBase))
    				{
 					$shortenedUrl = $data;
 					$opSuccess = TRUE;
